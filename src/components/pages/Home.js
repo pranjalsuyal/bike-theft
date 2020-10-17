@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HomeSection from "../HomeSection";
 import SearchBar from "../SearchBar";
+import Case from "../Case";
 
 function Home() {
+  const [results, setResults] = useState([]);
   //api call here
   const onSearchSubmit = async (term) => {
     console.log(term, "here");
@@ -15,6 +17,7 @@ function Home() {
         per_page: 100,
       },
     });
+    setResults(res.data.incidents);
     console.log(res, "result");
     console.log(res.data.incidents.length);
   };
@@ -27,24 +30,9 @@ function Home() {
     <>
       <HomeSection />
       <SearchBar onSearchSubmit={onSearchSubmit} />
+      {results && <Case results={results} />}
     </>
   );
 }
 
 export default Home;
-
-/*
-
-onSearchSubmit = async (term) => {
-    const res = await axios.get("https://api.unsplash.com/search/photos", {
-      params: { query: term, per_page: 20 },
-      headers: {
-        Authorization: "Client-ID RxOfRHYrs4q27UpD2Fpa8HP-DmhQLqE8tdYIbcMsZLk",
-      },
-    });
-    searchTerm = res.config.params.query;
-    console.log(res, "response");
-    this.props.imageArray(res.data.results);
-  };
-
-*/

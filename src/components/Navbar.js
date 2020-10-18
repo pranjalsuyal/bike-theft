@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  bgColor: {
+    backgroundColor: "#b19d4f",
+  },
   icon: {
     marginRight: theme.spacing(2),
   },
@@ -76,11 +79,11 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="relative">
+      <AppBar position="relative" className={classes.bgColor}>
         <Toolbar>
           <HomeIcon className={classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
-            BPD
+            Berlin Police Department
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchBar(props) {
   const [term, setTerm] = useState("");
-  const [fromDate, setFromDate] = useState(new Date());
+  const [fromDate, setFromDate] = useState(new Date(0));
   const [toDate, setToDate] = useState(new Date());
   const classes = useStyles();
   const onFormSubmit = (event) => {
@@ -44,7 +44,7 @@ function SearchBar(props) {
   //   props.onSearchSubmit(toDate);
   // };
   const handleFromDateChange = (date) => {
-    console.log("from");
+    console.log(new Date(date / 1000).getTime(), "from");
     props.onSearchSubmit(
       term,
       new Date(date / 1000).getTime(),

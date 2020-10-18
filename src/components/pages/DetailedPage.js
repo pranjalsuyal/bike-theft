@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomeSection from "../HomeSection";
+import Navbar from "../Navbar";
+import Police from "../../utils/police.jpg";
 import {
   Grid,
   makeStyles,
@@ -14,9 +16,25 @@ import axios from "axios";
 import bike from "../../utils/bike.png";
 
 const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     backgroundColor: "green",
+  //     flexDirection: 1,
+  //   },
   root: {
-    backgroundColor: "green",
-    flexDirection: 1,
+    margin: 0,
+    padding: 0,
+    boxSizing: "border-box",
+  },
+  hero: {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Police})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  },
+  cardSection: {
+    margin: "0 15%",
+    backgroundColor: "#fff",
+    borderRadius: "20px",
   },
   parentDiv: {
     float: "left",
@@ -45,81 +63,126 @@ function DetailedPage(props) {
   console.log(data);
   return (
     <>
-      <HomeSection />
-      <h1>Detailed Page</h1>
-      {!data.media && (
-        <CircularProgress
-          size={200}
-          thickness={2}
-          style={{ marginLeft: "42%" }}
-        />
-      )}
-      {data.media && ( //need to replace with loader
-        <>
-          {/* <Grid container md className={classes.root}> */}
-          {/* <Grid item> */}
-          <Typography variant="h4" color="secondary">
-            STOLEN
-          </Typography>
-          {/* </Grid> */}
-          {/* <Grid item> */}
-          <Typography variant="h5" color="textSecondary">
-            {data.title || "Not Available"}
-          </Typography>
-          {/* </Grid> */}
-          {/* <Grid item> */}
-          <Typography variant="h5" color="primary">
-            {data.address || "Not Available"}
-          </Typography>
-          {/* </Grid> */}
-          {/* </Grid> */}
-          <Grid container>
-            <Grid item xs={12} sm={6}>
-              {/* <div style={{ width: "50%" }}> */}
-              <img
-                src={data.media.image_url || data.media.image_url_thumb || bike}
-                style={{ objectFit: "contain", width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h5" color="textPrimary" align="center">
-                Description
-              </Typography>
-              <Divider variant="middle" />
-              <Typography variant="h6" color="textSecondary" align="center">
-                {data.description || "Not Available"}
-              </Typography>
-              <Typography variant="h5" color="textPrimary" align="center">
-                Date of Theft
-              </Typography>
-              <Divider variant="middle" />
-              <Typography variant="h6" color="secondary" align="center">
-                {`${new Date(data.occurred_at * 1000)
-                  .toUTCString()
-                  .slice(0, 16)}
-                 At : 
-                ${new Date(data.occurred_at * 1000)
-                  .toLocaleTimeString()
-                  .replace(/:.* /, "")
-                  .toLowerCase()}`}
-              </Typography>
-              <Typography variant="h5" color="textPrimary" align="center">
-                Reporting Date
-              </Typography>
-              <Divider variant="middle" />
-              <Typography variant="h6" color="secondary" align="center">
-                {`${new Date(data.updated_at * 1000).toUTCString().slice(0, 16)}
+      <div className={classes.root}>
+        <div className={classes.hero}>
+          <Navbar />
+          <HomeSection />
+          {!data.media && (
+            <CircularProgress
+              size={200}
+              thickness={2}
+              style={{ marginLeft: "42%" }}
+            />
+          )}
+          {data.media && ( //need to replace with loader
+            <>
+              {/* <Grid container md className={classes.root}> */}
+              {/* <Grid item> */}
+              <div className={classes.cardSection}>
+                <Grid container>
+                  <Grid item xs={12}>
+                    {/* <div style={{ width: "50%" }}> */}
+                    <img
+                      src={
+                        data.media.image_url ||
+                        data.media.image_url_thumb ||
+                        bike
+                      }
+                      style={{ objectFit: "contain", width: "100%" }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h3"
+                      color="secondary"
+                      align="center"
+                      gutterBottom
+                    >
+                      STOLEN
+                    </Typography>
+                    {/* </Grid> */}
+                    {/* <Grid item> */}
+                    <Typography
+                      variant="h5"
+                      color="textSecondary"
+                      align="center"
+                      gutterBottom
+                    >
+                      {data.title || "Not Available"}
+                    </Typography>
+                    {/* </Grid> */}
+                    {/* <Grid item> */}
+                    <Typography
+                      variant="h4"
+                      color="primary"
+                      align="center"
+                      gutterBottom
+                    >
+                      {data.address || "Not Available"}
+                    </Typography>
+                    {/* </Grid> */}
+                    {/* </Grid> */}
+                    <Typography
+                      variant="h4"
+                      color="textPrimary"
+                      align="center"
+                      gutterBottom
+                    >
+                      Description
+                    </Typography>
+                    <Divider variant="middle" />
+                    <Typography
+                      variant="h6"
+                      color="textSecondary"
+                      align="center"
+                    >
+                      {data.description || "Not Available"}
+                    </Typography>
+                    <Typography variant="h4" color="textPrimary" align="center">
+                      Date of Theft
+                    </Typography>
+                    <Divider variant="middle" />
+                    <Typography
+                      variant="h5"
+                      color="secondary"
+                      align="center"
+                      gutterBottom
+                    >
+                      {`${new Date(data.occurred_at * 1000)
+                        .toUTCString()
+                        .slice(0, 16)} At : 
+                         ${new Date(data.occurred_at * 1000)
+                           .toLocaleTimeString()
+                           .replace(/:.* /, "")
+                           .toLowerCase()}`}
+                    </Typography>
+                    <Typography variant="h4" color="textPrimary" align="center">
+                      Reporting Date
+                    </Typography>
+                    <Divider variant="middle" />
+                    <Typography
+                      variant="h5"
+                      color="secondary"
+                      align="center"
+                      gutterBottom
+                    >
+                      {`${new Date(data.updated_at * 1000)
+                        .toUTCString()
+                        .slice(0, 16)}
                  At : 
                 ${new Date(data.updated_at * 1000)
                   .toLocaleTimeString()
                   .replace(/:.* /, "")
                   .toLowerCase()}`}
-              </Typography>
-            </Grid>
-            {/* </div> */}
-          </Grid>
-        </>
-      )}
+                    </Typography>
+                  </Grid>
+                  {/* </div> */}
+                </Grid>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }

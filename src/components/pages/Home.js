@@ -18,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${Police})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    height: "100vh",
     backgroundAttachment: "fixed",
+  },
+  cardSection: {
+    margin: "0 15%",
+    backgroundColor: "#fff",
+    borderRadius: "20px",
   },
 }));
 
@@ -60,24 +64,26 @@ function Home() {
       <div className={classes.hero}>
         <Navbar />
         <HomeSection />
-        <SearchBar onSearchSubmit={onSearchSubmit} />
-        {errMsg && <Alert severity="error">{errMsg}</Alert>}
-        {loading && (
-          <CircularProgress
-            size={200}
-            thickness={2}
-            style={{ marginLeft: "42%" }}
-          />
-        )}
-        {results.length > 0 ? (
-          <Case results={results} />
-        ) : (
-          !loading && (
-            <Alert severity="warning">
-              Oh-ho, No results Found, Please try different filters
-            </Alert>
-          )
-        )}
+        <div className={classes.cardSection}>
+          <SearchBar onSearchSubmit={onSearchSubmit} />
+          {errMsg && <Alert severity="error">{errMsg}</Alert>}
+          {loading && (
+            <CircularProgress
+              size={200}
+              thickness={2}
+              style={{ marginLeft: "42%" }}
+            />
+          )}
+          {results.length > 0 ? (
+            <Case results={results} />
+          ) : (
+            !loading && (
+              <Alert severity="warning">
+                Oh-ho, No results Found, Please try different filters
+              </Alert>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

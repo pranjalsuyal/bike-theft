@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bike from "../utils/bike.png";
 import Pagination from "@material-ui/lab/Pagination";
+import Alert from "@material-ui/lab/Alert";
 import {
   makeStyles,
   Card,
@@ -42,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     width: "100%",
   },
+  alertStyle: {
+    width: "50%",
+    margin: "5% 25%",
+  },
 }));
 
 function Case(props) {
@@ -56,12 +61,16 @@ function Case(props) {
 
   return (
     <>
-      {/* {props.results.length && <CircularProgress />} */}
-      {/* {!props.results.length && ( */}
-      {/* <> */}
-      <Typography variant="h5" color="primary" align="right">
-        Total Cases : {props.results.length}
-      </Typography>
+      <div className={classes.alertStyle}>
+        <Alert
+          variant="outlined"
+          severity="success"
+          style={{ placeContent: "center" }}
+        >
+          {`  Yay! We found ${props.results.length} Cases`}
+        </Alert>
+      </div>
+      {/* </Typography> */}
       {props.results
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
         .map((result) => (
@@ -69,7 +78,7 @@ function Case(props) {
             <Button
               className={classes.buttonStyle}
               component={Link}
-              to={{ pathname: `/case/${result.id}`, result: { result } }}
+              to={{ pathname: `/case/${result.id}` }}
             >
               <CardMedia
                 className={classes.cover}
@@ -79,14 +88,23 @@ function Case(props) {
               <div className={classes.details}>
                 {/* <CardActionArea> */}
                 <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
+                  <Typography component="h5" variant="h6" align="center">
                     {result.title}
                   </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
+                  <Typography
+                    variant="subtitle2"
+                    color="textSecondary"
+                    align="center"
+                  >
                     {result.description || "Not Available"}
                   </Typography>
 
-                  <Typography variant="h6" color="primary" align="right">
+                  <Typography
+                    component="h5"
+                    variant="h6"
+                    color="secondary"
+                    align="center"
+                  >
                     {`Stolen on : ${new Date(result.occurred_at * 1000)
                       .toUTCString()
                       .slice(0, 16)} at : ${new Date(result.occurred_at * 1000)
@@ -94,10 +112,20 @@ function Case(props) {
                       .replace(/:.* /, "")
                       .toLowerCase()}`}
                   </Typography>
-                  <Typography variant="h6" color="secondary" align="right">
+                  <Typography
+                    component="h5"
+                    variant="h6"
+                    color="textPrimary"
+                    align="center"
+                  >
                     {`Location : ${result.address}`}
                   </Typography>
-                  <Typography variant="h6" color="primary" align="right">
+                  <Typography
+                    component="h5"
+                    variant="h6"
+                    color="secondary"
+                    align="center"
+                  >
                     {`Reported on : ${new Date(result.updated_at * 1000)
                       .toUTCString()
                       .slice(0, 16)} at : ${new Date(result.updated_at * 1000)
@@ -120,7 +148,7 @@ function Case(props) {
           page={page}
           onChange={handleChange}
           defaultPage={1}
-          color="primary"
+          color="secondary"
           size="large"
           showLastButton
           showFirstButton

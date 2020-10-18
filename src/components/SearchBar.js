@@ -7,16 +7,18 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-// import { connect } from "react-redux";
-// import { searchItem } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
   searchBarStyle: {
+    paddingTop: "20px",
     marginBottom: "20px",
     marginLeft: "15%",
     marginRight: "15%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  alignDate: {
+    margin: "0 20%",
   },
 }));
 
@@ -27,24 +29,13 @@ function SearchBar(props) {
   const classes = useStyles();
   const onFormSubmit = (event) => {
     event.preventDefault();
-    console.log("here");
-    // console.log(fromDate, "date");
     props.onSearchSubmit(
       term,
       new Date(fromDate / 1000).getTime(),
       new Date(toDate / 1000).getTime()
     );
   };
-  // const onFromDateSubmit = (fromDate) => {
-  //   console.log(fromDate, "from");
-  //   props.onSearchSubmit(fromDate);
-  // };
-  // const onToDateSubmit = (toDate) => {
-  //   console.log(toDate, "to");
-  //   props.onSearchSubmit(toDate);
-  // };
   const handleFromDateChange = (date) => {
-    console.log(new Date(date / 1000).getTime(), "from");
     props.onSearchSubmit(
       term,
       new Date(date / 1000).getTime(),
@@ -53,7 +44,6 @@ function SearchBar(props) {
     setFromDate(date);
   };
   const handleToDateChange = (date) => {
-    console.log("to");
     props.onSearchSubmit(
       term,
       new Date(fromDate / 1000).getTime(),
@@ -83,6 +73,8 @@ function SearchBar(props) {
             }}
           />
         </form>
+      </div>
+      <div className={classes.alignDate}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             margin="normal"
@@ -93,7 +85,6 @@ function SearchBar(props) {
             disableFuture
             value={fromDate}
             onChange={(date) => handleFromDateChange(date)}
-            // onAccept={onFromDateSubmit(new Date(fromDate / 1000).getTime())}
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
@@ -107,7 +98,6 @@ function SearchBar(props) {
             disableFuture
             value={toDate}
             minDate={fromDate}
-            // onAccept={onToDateSubmit(new Date(toDate / 1000).getTime())}
             onChange={(date) => handleToDateChange(date)}
             KeyboardButtonProps={{
               "aria-label": "change date",

@@ -14,12 +14,8 @@ const useStyles = makeStyles((theme) => ({
   cardRoot: {
     display: "flex",
     backgroundColor: "transparent",
-    // marginBottom: "5px",
   },
   cover: {
-    // height: "auto",
-    // height: "250px",
-    // width: "auto",
     width: "250px",
     objectFit: "contain",
   },
@@ -55,28 +51,9 @@ function HomeSection() {
               // color="#fff"
               className={classes.colorText}
               align="center"
-              glutterBottom
             >
               Berlin Police Department
             </Typography>
-            {/* <Typography
-              variant="h1"
-              component="h2"
-              color="white"
-              align="center"
-              glutterBottom
-            >
-              Police
-            </Typography>
-            <Typography
-              variant="h1"
-              component="h2"
-              color="white"
-              align="center"
-              glutterBottom
-            >
-              Department
-            </Typography> */}
           </CardContent>
         </div>
       </Card>

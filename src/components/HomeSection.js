@@ -48,7 +48,6 @@ function HomeSection() {
             <Typography
               variant="h1"
               component="h2"
-              // color="#fff"
               className={classes.colorText}
               align="center"
             >

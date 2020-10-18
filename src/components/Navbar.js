@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, useLocation, useHistory } from "react-router-dom";
 import { Home as HomeIcon, MoreVert as MoreIcon } from "@material-ui/icons";
 import {
   makeStyles,
@@ -43,14 +42,10 @@ const useStyles = makeStyles((theme) => ({
 function Navbar(props) {
   const [mobileAnchor, setMobileAnchor] = useState(null);
   const classes = useStyles();
-  const location = useLocation();
-  console.log(location, "p");
-  const history = useHistory();
-  console.log(history, "p");
   const handleMobileMenuOpen = (event) => {
     setMobileAnchor(event.currentTarget);
   };
-  const handleMobileMenuClose = (event) => {
+  const handleMobileMenuClose = () => {
     setMobileAnchor(null);
   };
   const isMobileMenuOpen = Boolean(mobileAnchor);

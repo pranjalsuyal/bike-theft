@@ -7,13 +7,11 @@ import {
   makeStyles,
   Card,
   CardContent,
-  CardActionArea,
   Typography,
   CardMedia,
   Divider,
   Box,
   Button,
-  CircularProgress,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,9 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 0 auto",
   },
   cover: {
-    // height: "auto",
     height: "250px",
-    // width: "auto",
     width: "250px",
     objectFit: "contain",
   },
@@ -53,11 +49,10 @@ function Case(props) {
   const classes = useStyles();
   const itemsPerPage = 10;
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(props.results.length / itemsPerPage); //check if need to convert into state
+  const totalPages = Math.ceil(props.results.length / itemsPerPage);
   const handleChange = (event, value) => {
     setPage(value);
   };
-  console.log(props);
 
   return (
     <>
@@ -70,7 +65,6 @@ function Case(props) {
           {`  Yay! We found ${props.results.length} Cases`}
         </Alert>
       </div>
-      {/* </Typography> */}
       {props.results
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
         .map((result) => (
@@ -86,7 +80,6 @@ function Case(props) {
                 image={result.media.image_url_thumb || bike}
               />
               <div className={classes.details}>
-                {/* <CardActionArea> */}
                 <CardContent className={classes.content}>
                   <Typography component="h5" variant="h6" align="center">
                     {result.title}
@@ -134,7 +127,6 @@ function Case(props) {
                       .toLowerCase()}`}
                   </Typography>
                 </CardContent>
-                {/* </CardActionArea> */}
               </div>
             </Button>
           </Card>
@@ -142,7 +134,6 @@ function Case(props) {
       <Divider />
       <Box component="span">
         <Pagination
-          // className={classes.pageStyle}
           classes={{ ul: classes.paginator }}
           count={totalPages}
           page={page}
@@ -154,8 +145,6 @@ function Case(props) {
           showFirstButton
         />
       </Box>
-      {/* </> */}
-      {/* //   )} */}
     </>
   );
 }

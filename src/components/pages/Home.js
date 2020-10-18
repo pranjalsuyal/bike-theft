@@ -35,7 +35,6 @@ function Home() {
 
   const onSearchSubmit = async (term, fromDate, toDate) => {
     setLoading(true);
-    console.log(term, "here");
     const res = await axios
       .get("https://bikewise.org:443/api/v2/incidents", {
         params: {

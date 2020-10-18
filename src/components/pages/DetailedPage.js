@@ -5,9 +5,6 @@ import Police from "../../utils/police.jpg";
 import {
   Grid,
   makeStyles,
-  Card,
-  CardMedia,
-  CardContent,
   Typography,
   Divider,
   CircularProgress,
@@ -16,10 +13,6 @@ import axios from "axios";
 import bike from "../../utils/bike.png";
 
 const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     backgroundColor: "green",
-  //     flexDirection: 1,
-  //   },
   root: {
     margin: 0,
     padding: 0,
@@ -57,10 +50,9 @@ function DetailedPage(props) {
     const res = await axios.get(
       `https://bikewise.org:443/api/v2/incidents/${props.match.params.id}`
     );
-    setData(res.data.incident); //whatver
+    setData(res.data.incident);
   };
 
-  console.log(data);
   return (
     <>
       <div className={classes.root}>
@@ -74,14 +66,11 @@ function DetailedPage(props) {
               style={{ marginLeft: "42%" }}
             />
           )}
-          {data.media && ( //need to replace with loader
+          {data.media && (
             <>
-              {/* <Grid container md className={classes.root}> */}
-              {/* <Grid item> */}
               <div className={classes.cardSection}>
                 <Grid container>
                   <Grid item xs={12}>
-                    {/* <div style={{ width: "50%" }}> */}
                     <img
                       src={
                         data.media.image_url ||
@@ -100,8 +89,6 @@ function DetailedPage(props) {
                     >
                       STOLEN
                     </Typography>
-                    {/* </Grid> */}
-                    {/* <Grid item> */}
                     <Typography
                       variant="h5"
                       color="textSecondary"
@@ -110,8 +97,6 @@ function DetailedPage(props) {
                     >
                       {data.title || "Not Available"}
                     </Typography>
-                    {/* </Grid> */}
-                    {/* <Grid item> */}
                     <Typography
                       variant="h4"
                       color="primary"
@@ -120,8 +105,6 @@ function DetailedPage(props) {
                     >
                       {data.address || "Not Available"}
                     </Typography>
-                    {/* </Grid> */}
-                    {/* </Grid> */}
                     <Typography
                       variant="h4"
                       color="textPrimary"
@@ -176,7 +159,6 @@ function DetailedPage(props) {
                   .toLowerCase()}`}
                     </Typography>
                   </Grid>
-                  {/* </div> */}
                 </Grid>
               </div>
             </>

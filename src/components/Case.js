@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import bike from "../utils/bike.png";
 import Pagination from "@material-ui/lab/Pagination";
 import {
   makeStyles,
   Card,
   CardContent,
+  CardActionArea,
   Typography,
   CardMedia,
   Divider,
   Box,
+  Button,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: "10px",
   },
+  buttonStyle: {
+    width: "100%",
+  },
 }));
 
 function Case(props) {
@@ -56,42 +62,49 @@ function Case(props) {
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
         .map((result) => (
           <Card className={classes.root} key={result.id}>
-            <CardMedia
-              className={classes.cover}
-              component="img"
-              image={result.media.image_url_thumb || bike}
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5">
-                  {result.title}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {result.description || "Not Available"}
-                </Typography>
+            <Button
+              className={classes.buttonStyle}
+              component={Link}
+              to={{ pathname: `/case/${result.id}`, result: { result } }}
+            >
+              <CardMedia
+                className={classes.cover}
+                component="img"
+                image={result.media.image_url_thumb || bike}
+              />
+              <div className={classes.details}>
+                {/* <CardActionArea> */}
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {result.title}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {result.description || "Not Available"}
+                  </Typography>
 
-                <Typography variant="h6" color="primary" align="right">
-                  {`Stolen on : ${new Date(result.occurred_at * 1000)
-                    .toUTCString()
-                    .slice(0, 16)} at : ${new Date(result.occurred_at * 1000)
-                    .toLocaleTimeString()
-                    .replace(/:.* /, "")
-                    .toLowerCase()}`}
-                </Typography>
-                <Typography variant="h6" color="secondary" align="right">
-                  {`Location : ${result.address}`}
-                </Typography>
-                <Typography variant="h6" color="primary" align="right">
-                  {`Reported on : ${new Date(result.updated_at * 1000)
-                    .toUTCString()
-                    .slice(0, 16)} at : ${new Date(result.updated_at * 1000)
-                    .toLocaleTimeString()
-                    .replace(/:.* /, "")
-                    .toLowerCase()}`}
-                </Typography>
-              </CardContent>
-              {/* <CardActionArea></CardActionArea> */}
-            </div>
+                  <Typography variant="h6" color="primary" align="right">
+                    {`Stolen on : ${new Date(result.occurred_at * 1000)
+                      .toUTCString()
+                      .slice(0, 16)} at : ${new Date(result.occurred_at * 1000)
+                      .toLocaleTimeString()
+                      .replace(/:.* /, "")
+                      .toLowerCase()}`}
+                  </Typography>
+                  <Typography variant="h6" color="secondary" align="right">
+                    {`Location : ${result.address}`}
+                  </Typography>
+                  <Typography variant="h6" color="primary" align="right">
+                    {`Reported on : ${new Date(result.updated_at * 1000)
+                      .toUTCString()
+                      .slice(0, 16)} at : ${new Date(result.updated_at * 1000)
+                      .toLocaleTimeString()
+                      .replace(/:.* /, "")
+                      .toLowerCase()}`}
+                  </Typography>
+                </CardContent>
+                {/* </CardActionArea> */}
+              </div>
+            </Button>
           </Card>
         ))}
       <Divider />

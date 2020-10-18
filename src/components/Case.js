@@ -12,6 +12,7 @@ import {
   Divider,
   Box,
   Button,
+  CircularProgress,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +56,9 @@ function Case(props) {
 
   return (
     <>
+      {/* {props.results.length && <CircularProgress />} */}
+      {/* {!props.results.length && ( */}
+      {/* <> */}
       <Typography variant="h5" color="primary" align="right">
         Total Cases : {props.results.length}
       </Typography>
@@ -122,6 +126,8 @@ function Case(props) {
           showFirstButton
         />
       </Box>
+      {/* </> */}
+      {/* //   )} */}
     </>
   );
 }

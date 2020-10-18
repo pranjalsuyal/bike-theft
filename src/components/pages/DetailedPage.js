@@ -8,6 +8,7 @@ import {
   CardContent,
   Typography,
   Divider,
+  CircularProgress,
 } from "@material-ui/core";
 import axios from "axios";
 import bike from "../../utils/bike.png";
@@ -46,6 +47,13 @@ function DetailedPage(props) {
     <>
       <HomeSection />
       <h1>Detailed Page</h1>
+      {!data.media && (
+        <CircularProgress
+          size={200}
+          thickness={2}
+          style={{ marginLeft: "42%" }}
+        />
+      )}
       {data.media && ( //need to replace with loader
         <>
           {/* <Grid container md className={classes.root}> */}

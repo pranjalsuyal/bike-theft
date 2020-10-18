@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   details: {
     display: "flex",
     flexDirection: "column",
+    width: "100%",
   },
   content: {
     flex: "1 0 auto",
@@ -48,6 +49,9 @@ function Case(props) {
 
   return (
     <>
+      <Typography variant="h5" color="primary" align="right">
+        Total Cases : {props.results.length}
+      </Typography>
       {props.results
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
         .map((result) => (
@@ -64,6 +68,26 @@ function Case(props) {
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   {result.description || "Not Available"}
+                </Typography>
+
+                <Typography variant="h6" color="primary" align="right">
+                  {`Stolen on : ${new Date(result.occurred_at * 1000)
+                    .toUTCString()
+                    .slice(0, 16)} at : ${new Date(result.occurred_at * 1000)
+                    .toLocaleTimeString()
+                    .replace(/:.* /, "")
+                    .toLowerCase()}`}
+                </Typography>
+                <Typography variant="h6" color="secondary" align="right">
+                  {`Location : ${result.address}`}
+                </Typography>
+                <Typography variant="h6" color="primary" align="right">
+                  {`Reported on : ${new Date(result.updated_at * 1000)
+                    .toUTCString()
+                    .slice(0, 16)} at : ${new Date(result.updated_at * 1000)
+                    .toLocaleTimeString()
+                    .replace(/:.* /, "")
+                    .toLowerCase()}`}
                 </Typography>
               </CardContent>
               {/* <CardActionArea></CardActionArea> */}

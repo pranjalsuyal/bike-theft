@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/static/js/main.9b17d2b6.chunk.js",
+    "main.js.map": "/static/js/main.9b17d2b6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8d8ffe79.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8d8ffe79.js.map",
+    "static/js/2.5275400c.chunk.js": "/static/js/2.5275400c.chunk.js",
+    "static/js/2.5275400c.chunk.js.map": "/static/js/2.5275400c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1efbb885c8346a5590f109adf0549d88.js": "/precache-manifest.1efbb885c8346a5590f109adf0549d88.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.5275400c.chunk.js.LICENSE.txt": "/static/js/2.5275400c.chunk.js.LICENSE.txt",
+    "static/media/BPDLogo.png": "/static/media/BPDLogo.dd53f7d4.png",
+    "static/media/bike.png": "/static/media/bike.ad711081.png",
+    "static/media/police.jpg": "/static/media/police.6b7432e0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8d8ffe79.js",
+    "static/js/2.5275400c.chunk.js",
+    "static/js/main.9b17d2b6.chunk.js"
+  ]
+}
